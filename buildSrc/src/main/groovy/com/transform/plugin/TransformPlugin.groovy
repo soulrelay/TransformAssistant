@@ -9,14 +9,6 @@ class TransformPlugin implements Plugin<Project> {
     String compileModule = "app"
 
     void apply(Project project) {
-        project.task('hello') {
-            doLast {
-                println 'Hello transform plugin'
-            }
-        }
-        println 'Hello world'
-
-       // project.extensions.create('combuild', ComExtension)
 
         String taskNames = project.gradle.startParameter.taskNames.toString()
         System.out.println("taskNames is " + taskNames)
@@ -175,3 +167,34 @@ class TransformPlugin implements Plugin<Project> {
     }
 
 }
+
+//terminal输入如下命令     ./gradlew clean component_one:assembleDebug
+
+//> Configure project :app
+//taskNames is [clean, component_one:assembleDebug]
+//current module is app
+//debug assembleTask info:component_one:assembleDebug
+//compilemodule  is component_one
+//apply plugin is com.android.application
+//
+//> Configure project :component_one
+//taskNames is [clean, component_one:assembleDebug]
+//current module is component_one
+//debug assembleTask info:component_one:assembleDebug
+//compilemodule  is component_one
+//apply plugin is com.android.application
+//there is no add dependencies
+//
+//> Configure project :component_three
+//taskNames is [clean, component_one:assembleDebug]
+//current module is component_three
+//debug assembleTask info:component_one:assembleDebug
+//compilemodule  is component_one
+//apply plugin is com.android.library
+//
+//> Configure project :component_two
+//taskNames is [clean, component_one:assembleDebug]
+//current module is component_two
+//debug assembleTask info:component_one:assembleDebug
+//compilemodule  is component_one
+//apply plugin is com.android.library

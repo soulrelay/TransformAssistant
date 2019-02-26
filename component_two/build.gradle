@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    compile project(':common_lib')
+    api project(':common_lib')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
