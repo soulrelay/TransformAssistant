@@ -1,0 +1,4 @@
+1、每个组件的有各自的资源前缀 如：resourcePrefix "component_two_"
+2、为component_one、component_two、component_three以及app都手动添加了gradle.properties 添加相关属性 待插件进行属性读取
+3、解决单个组件中main/res和runalone/res下资源duplicate的问题 可以将资源统一放在main/res下 runalone根据测试需求进行处理
+4、目前是将style放在了common_lib下 供每个组件引用
