@@ -2,6 +2,7 @@ package com.transform.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import com.transform.util.StringUtil
 
 class TransformPlugin implements Plugin<Project> {
 
@@ -147,14 +148,14 @@ class TransformPlugin implements Plugin<Project> {
                  * compileComponent=com.luojilab.reader:readercomponent:1.0.0
                  * 注意，前提是已经将组件aar文件发布到maven上，并配置了相应的repositories
                  */
-                project.dependencies.add("compile", str)
+                project.dependencies.add("api", str)
                 System.out.println("add dependencies lib  : " + str)
             } else {
                 /**
                  * 示例语法:module
                  * compileComponent=readercomponent,sharecomponent
                  */
-                project.dependencies.add("compile", project.project(':' + str))
+                project.dependencies.add("api", project.project(':' + str))
                 System.out.println("add dependencies project : " + str)
             }
         }
@@ -183,7 +184,10 @@ class TransformPlugin implements Plugin<Project> {
 //debug assembleTask info:component_one:assembleDebug
 //compilemodule  is component_one
 //apply plugin is com.android.application
-//there is no add dependencies
+//comp is component_two
+//add dependencies project : component_two
+//comp is component_three
+//add dependencies project : component_three
 //
 //> Configure project :component_three
 //taskNames is [clean, component_one:assembleDebug]
@@ -198,3 +202,4 @@ class TransformPlugin implements Plugin<Project> {
 //debug assembleTask info:component_one:assembleDebug
 //compilemodule  is component_one
 //apply plugin is com.android.library
+
