@@ -1,1 +1,1 @@
-include ':app', ':buildSrc', ':component_one', ':component_two', ':component_three', ':common_lib'
+include ':app', ':buildSrc', ':component_one', ':component_two', ':component_three', ':common_lib', ':anotation_compile', ':anotation'

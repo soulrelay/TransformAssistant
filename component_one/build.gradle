@@ -29,6 +29,8 @@ android {
 
 dependencies {
     api project(':common_lib')
+    api project(':anotation')
+    annotationProcessor project(':anotation_compile')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 

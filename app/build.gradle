@@ -18,10 +18,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main{
+            java {
+                srcDirs = ['src/main/java',
+                           '../component_one/src/main/ast']
+            }
+        }
+    }
 }
 
 dependencies {
     api project(':common_lib')
+    api project(':anotation')
+    annotationProcessor project(':anotation_compile')
+
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
