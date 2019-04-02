@@ -86,6 +86,7 @@ public class ASTProcessor extends AbstractProcessor {
                 String id = getValue(jcMethod, 1);
                 String levelType = getValue(jcMethod, 2);
                 if (type.equals("AST.TYPE.SOURCE")) {
+
                     int level = Integer.parseInt(levelType);
                     if (mSources.get(id) != null) {
                         mSources.get(id).add(new CodeItem(level, jcMethod));
@@ -96,7 +97,7 @@ public class ASTProcessor extends AbstractProcessor {
                     }
                 } else {
                     int level = levelType.equals("AST.LEVEL.BEFORE") ? AST.LEVEL.BEFORE : AST.LEVEL.AFTER;
-                    mTargets.put(id, new CodeItem(level, jcMethod));
+                    mTargets.put(id, new CodeItem( level, jcMethod));
                 }
             }
         }
