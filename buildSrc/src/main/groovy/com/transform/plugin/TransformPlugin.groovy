@@ -3,6 +3,8 @@ package com.transform.plugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import com.transform.util.StringUtil
+import org.objectweb.asm.ClassReader
+import org.objectweb.asm.ClassWriter
 
 class TransformPlugin implements Plugin<Project> {
 
@@ -165,6 +167,21 @@ class TransformPlugin implements Plugin<Project> {
         boolean isAssemble = false
         boolean isDebug = false
         List<String> modules = new ArrayList<>()
+    }
+
+
+    private void copy(String inputPath, String outputPath) {
+        try {
+            FileInputStream is = new FileInputStream(inputPath)
+            ClassReader cr = new ClassReader(is)
+            ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES)
+            cr.accept(cw, 0)
+            FileOutputStream fos = new FileOutputStream(outputPath)
+            fos.write(cw.toByteArray())
+            fos.close()
+        } catch (IOException e) {
+            e.printStackTrace()
+        }
     }
 
 }
